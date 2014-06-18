@@ -1,0 +1,4 @@
+### Gitで管理しないディレクトリ
+/packer_box/
+/packer_cache/
+
