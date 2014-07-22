@@ -15,22 +15,24 @@ sudo mount -t iso9660 -o loop ${VAGRANT_HOME}/VBoxGuestAdditions_$VBOX_VERSION.i
 
 
 ## Bug Fix
-sh /mnt/VBoxLinuxAdditions.run --noexec --target ~/vbox-extract
-mkdir ~/vbox-extract
-cd ~/vbox-extract
-mkdir vbox
-cd vbox
-tar jxvf ../VBoxGuestAdditions-amd64.tar.bz2
-cd src/vboxguest-4.3.12/vboxguest/r0drv/linux/
-sed -i -e "s/KERNEL_VERSION(3, 13, 0)/KERNEL_VERSION(3, 10, 0)/g" memobj-r0drv-linux.c
-cd ~/vbox-extract/vbox
-tar -jcvf ../VBoxGuestAdditions-amd64.tar.bz2 .
-cd ~/vbox-extract
-sudo ./install.sh
+# sh /mnt/VBoxLinuxAdditions.run --noexec --target ~/vbox-extract
+# mkdir ~/vbox-extract
+# cd ~/vbox-extract
+# mkdir vbox
+# cd vbox
+# tar jxvf ../VBoxGuestAdditions-amd64.tar.bz2
+# cd src/vboxguest-4.3.12/vboxguest/r0drv/linux/
+# sed -i -e "s/KERNEL_VERSION(3, 13, 0)/KERNEL_VERSION(3, 10, 0)/g" memobj-r0drv-linux.c
+# cd ~/vbox-extract/vbox
+# tar -jcvf ../VBoxGuestAdditions-amd64.tar.bz2 .
+# cd ~/vbox-extract
+# sudo ./install.sh
 
 
-#sudo sh /mnt/VBoxLinuxAdditions.run
+sudo sh /mnt/VBoxLinuxAdditions.run
+
 sudo umount /mnt
 sudo /etc/rc.d/init.d/vboxadd setup
 sudo chkconfig vboxadd-x11 off
-#rm ${VAGRANT_HOME}/VBoxGuestAdditions_$VBOX_VERSION.iso
+
+rm ${VAGRANT_HOME}/VBoxGuestAdditions_$VBOX_VERSION.iso
