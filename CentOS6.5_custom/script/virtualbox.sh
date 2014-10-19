@@ -5,7 +5,7 @@ VAGRANT_HOME=/home/${VAGRANT_USER}
 
 # Installing packages
 echo "Installing packages ..."
-sudo yum -y install gcc make perl kernel-headers-`uname -r` kernel-devel-`uname -r`
+sudo yum -y install gcc make bzip2 perl kernel-headers-`uname -r` kernel-devel-`uname -r`
 
 # Installing Virtualbox Guest Additions
 echo "Installing VirtualBox Guest Additions ..."
