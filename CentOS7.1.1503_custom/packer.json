@@ -1,0 +1,53 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "vm_name": "box",
+      "boot_wait": "10s",
+      "disk_size": 8000,
+      "guest_os_type": "RedHat_64",
+      "iso_url": "http://ftp.iij.ad.jp/pub/linux/centos/7.1.1503/isos/x86_64/CentOS-7-x86_64-NetInstall-1503.iso",
+       "iso_checksum": "fd1951905c4c26560c807e81767278fec46ef8bb",
+       "iso_checksum_type": "sha1",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -h now",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "512"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ],
+      "http_directory": "./http/",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "./script/virtualbox.sh"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "../packer_box/CentOS7.1.1503_custom.box"
+    }
+  ]
+}
