@@ -2,6 +2,6 @@
 
 ## Usage
 ```
-$ cd CentOS6.7_custom
+$ cd CentOS7.2_custom
 $ ./packer.sh
 ```
